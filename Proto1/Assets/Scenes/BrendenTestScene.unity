@@ -570,5 +570,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Point1: {fileID: 1165377510}
   Point2: {fileID: 855898849}
-  moveSpeed: 0.2
+  moveSpeed: 5
   waitTime: 1
