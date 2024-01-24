@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,38 +14,41 @@ public class PersonMovement : MonoBehaviour
 
     private GameObject target;
 
-    private bool move1 = false;
+    bool walking = true;
 
     private void Start()
     {
-        StartCoroutine(Walk());
+        target = Point1;
     }
 
-    private IEnumerator Walk()
+    private void Update()
     {
-        while (true)
+        Walk();
+    }
+
+    private void Walk()
+    {
+        if (walking)
         {
-            Debug.Log("In walk");
-            if (move1)
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+
+            if (transform.position.x == Point2.transform.position.x)
             {
                 target = Point1;
+                walking = false;
+                Invoke("resetCooldown", waitTime);
             }
-            else
+            else if(transform.position.x == Point1.transform.position.x)
             {
                 target = Point2;
+                walking = false;
+                Invoke("resetCooldown", waitTime);
             }
-
-            while (transform.position.x != target.transform.position.x)
-            {
-                Debug.Log("In While Loop");
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
-            }
-
-            move1 = !move1;
-
-            yield return new WaitForSeconds(waitTime);
-            yield return null;
         }
+    }
 
+    private void resetCooldown()
+    {
+        walking = true;
     }
 }
