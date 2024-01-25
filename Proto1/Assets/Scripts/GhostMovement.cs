@@ -56,6 +56,10 @@ public class GhostMovement : MonoBehaviour
             //rb2d.simulated = false;     Freezes the rigidbody so it won't move
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             cEnemy.GetComponent<PersonMovement>().possesed();
+<<<<<<< Updated upstream
+=======
+            
+>>>>>>> Stashed changes
         }
         else if(isPossessed && Vector3.Distance(cEnemy.transform.position, transform.position) < Vector3.Distance(cBook.transform.position, transform.position))
         {
