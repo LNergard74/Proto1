@@ -20,6 +20,8 @@ public class GhostMovement : MonoBehaviour
 
     private Movement movementActions;
 
+    private GameObject closest;
+
     public bool isPossessed;
     public bool canPossess;
     private Vector3 targetLocation;
@@ -33,6 +35,7 @@ public class GhostMovement : MonoBehaviour
         movementActions = new Movement();
         rb2d = GetComponent<Rigidbody2D>();
         isPossessed = false;
+
     }
 
     /// <summary>
@@ -45,15 +48,17 @@ public class GhostMovement : MonoBehaviour
         if (!isPossessed && canPossess)
         {
             isPossessed = true;
-            rb2d.simulated = false;     //Freezes the rigidbody so it won't move
+            //rb2d.simulated = false;     //Freezes the rigidbody so it won't move
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            
+            closest.transform.parent = this.transform;
+
         }
         else
         {
             isPossessed = false;
-            rb2d.simulated = true;
+            //rb2d.simulated = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            closest.transform.parent = null;
         }
     }
 
@@ -85,7 +90,7 @@ public class GhostMovement : MonoBehaviour
         //Updating the targetLocation for the player to follow when possessing enemies
         if (isPossessed)
         {
-            transform.position = targetLocation;
+            //transform.position = targetLocation;
         }
     }
 
@@ -98,7 +103,7 @@ public class GhostMovement : MonoBehaviour
     {
         GameObject[] enemy;
         enemy = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject closest = null;
+        closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
         
@@ -116,12 +121,12 @@ public class GhostMovement : MonoBehaviour
                 if(curDistance < possessionRange)
                 {
                     canPossess = true;
-                    targetLocation = go.transform.position;
+                    targetLocation = go.transform.position;                    
                 }
                 else
                 {
                     canPossess = false;
-                }
+                }                
             }
         }
         
