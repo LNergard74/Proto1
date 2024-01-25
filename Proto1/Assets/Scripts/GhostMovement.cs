@@ -24,6 +24,7 @@ public class GhostMovement : MonoBehaviour
     public bool canPossess;
     private Vector3 targetLocation;
 
+    private GameObject cEnemy;
 
     /// <summary>
     /// Finds the rigidbody, assigns the action map to movementActions, and sets the isPossessed bool
@@ -45,15 +46,16 @@ public class GhostMovement : MonoBehaviour
         if (!isPossessed && canPossess)
         {
             isPossessed = true;
-            rb2d.simulated = false;     //Freezes the rigidbody so it won't move
+            //rb2d.simulated = false;     Freezes the rigidbody so it won't move
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            
+            cEnemy.GetComponent<PersonMovement>().possesed();
         }
         else
         {
             isPossessed = false;
             rb2d.simulated = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            cEnemy.GetComponent<PersonMovement>().unpossesed();
         }
     }
 
@@ -72,7 +74,16 @@ public class GhostMovement : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        rb2d.AddForce(moveSpeed * movement);        
+        if (isPossessed)
+        {
+            movement.y = 0;
+            rb2d.AddForce(moveSpeed * movement);
+            cEnemy.transform.position = transform.position;
+        }
+        else
+        {
+            rb2d.AddForce(moveSpeed * movement);
+        }
     }
 
     /// <summary>
@@ -80,7 +91,7 @@ public class GhostMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        ClosestEnemy();
+        cEnemy = ClosestEnemy();
 
         //Updating the targetLocation for the player to follow when possessing enemies
         if (isPossessed)

@@ -4,19 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - Book
-=======
   - Enemy
->>>>>>> origin/Lorien
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ghost
   - Water
   - UI
-  - 
+  - Enemies
   - 
   - 
   - 
