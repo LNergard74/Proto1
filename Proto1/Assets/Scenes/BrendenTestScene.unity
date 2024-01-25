@@ -835,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exorsist
       objectReference: {fileID: 0}
+    - target: {fileID: 7697524755174193239, guid: aa0638c3186c4ca47a77581badfb251d, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -21,6 +21,7 @@ public class GhostMovement : MonoBehaviour
     private Movement movementActions;
 
     public bool isPossessed;
+    public bool justPossessed;
     public bool canPossess;
     private Vector3 targetLocation;
 
@@ -46,6 +47,7 @@ public class GhostMovement : MonoBehaviour
         if (!isPossessed && canPossess)
         {
             isPossessed = true;
+            justPossessed = true;
             //rb2d.simulated = false;     Freezes the rigidbody so it won't move
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             cEnemy.GetComponent<PersonMovement>().possesed();
@@ -94,9 +96,10 @@ public class GhostMovement : MonoBehaviour
         cEnemy = ClosestEnemy();
 
         //Updating the targetLocation for the player to follow when possessing enemies
-        if (isPossessed)
+        if (isPossessed && justPossessed)
         {
             transform.position = targetLocation;
+            justPossessed = false;
         }
     }
 
