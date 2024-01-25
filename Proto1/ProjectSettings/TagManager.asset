@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Book
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ghost
   - Water
   - UI
-  - 
-  - 
+  - Enemies
+  - Moveablefloor
   - 
   - 
   - 
