@@ -23,12 +23,13 @@ public class GhostMovement : MonoBehaviour
     public bool isPossessed;
     public bool justPossessed;
     public bool canPossess;
+    public bool canPossessBook;
+    public bool possessedBook = false;
+
     private Vector3 targetLocation;
 
     private GameObject cEnemy;
-
     private GameObject closestItem;
-    private bool possessedBook = false;
     private GameObject cBook;
 
     /// <summary>
@@ -39,8 +40,6 @@ public class GhostMovement : MonoBehaviour
         movementActions = new Movement();
         rb2d = GetComponent<Rigidbody2D>();
         isPossessed = false;
-
-
     }
 
     /// <summary>
@@ -50,7 +49,6 @@ public class GhostMovement : MonoBehaviour
     /// <param name="context"></param>
     private void Interact(InputAction.CallbackContext context)
     {
-        Debug.Log("interact");
         if (!isPossessed && !possessedBook && canPossess && Vector3.Distance(cEnemy.transform.position, transform.position) < Vector3.Distance(cBook.transform.position, transform.position))
         {
             isPossessed = true;
@@ -65,7 +63,7 @@ public class GhostMovement : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             cEnemy.GetComponent<PersonMovement>().unpossesed();
         }
-        else if(!possessedBook && !isPossessed && canPossess && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
+        else if(!possessedBook && !isPossessed && canPossessBook && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
         {
             possessedBook = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -101,7 +99,7 @@ public class GhostMovement : MonoBehaviour
             rb2d.AddForce(moveSpeed * movement);
             cEnemy.transform.position = transform.position;
         }
-        else if(isPossessed && possessedBook)
+        else if(!isPossessed && possessedBook)
         {
             rb2d.AddForce(moveSpeed * movement);
             cBook.transform.position = transform.position;
@@ -193,13 +191,12 @@ public class GhostMovement : MonoBehaviour
                 //Allows the player to possess enemies once close enough to enemy
                 if (curDistance < possessionRange)
                 {
-                    canPossess = true;
+                    canPossessBook = true;
                     targetLocation = go.transform.position;
-                    possessedBook = true;
                 }
                 else
                 {
-                    canPossess = false;
+                    canPossessBook = false;
                 }
             }
         }
