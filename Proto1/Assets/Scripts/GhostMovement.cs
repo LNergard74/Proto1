@@ -219,4 +219,10 @@ public class GhostMovement : MonoBehaviour
         movementActions.Disable();
         movementActions.Controls.Interact.performed -= Interact;
     }
+
+    public void Bonk()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        possessedBook = false;
+    }
 }

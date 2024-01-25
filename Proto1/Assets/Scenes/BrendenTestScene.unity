@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 1649388672}
   - component: {fileID: 1649388671}
   - component: {fileID: 1649388670}
+  - component: {fileID: 1649388674}
   m_Layer: 8
   m_Name: Book
   m_TagString: Book
@@ -774,6 +775,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1649388674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649388669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94bd9caf44672ef4585b064c94f9ed13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 511101394}
 --- !u!1001 &7697524754720154348
 PrefabInstance:
   m_ObjectHideFlags: 0
