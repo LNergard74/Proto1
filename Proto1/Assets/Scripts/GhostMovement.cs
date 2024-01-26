@@ -55,30 +55,30 @@ public class GhostMovement : MonoBehaviour
             justPossessed = true;
             //rb2d.simulated = false;     Freezes the rigidbody so it won't move
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            rb2d.velocity = Vector3.zero;
             cEnemy.GetComponent<PersonMovement>().possesed();
-<<<<<<< Updated upstream
-=======
-            
->>>>>>> Stashed changes
+            gameObject.layer = 9;
         }
         else if(isPossessed && Vector3.Distance(cEnemy.transform.position, transform.position) < Vector3.Distance(cBook.transform.position, transform.position))
         {
             isPossessed = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             cEnemy.GetComponent<PersonMovement>().unpossesed();
+            gameObject.layer = 3;
         }
         else if(!possessedBook && !isPossessed && canPossessBook && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
         {
             possessedBook = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             cBook.GetComponent<Rigidbody2D>().gravityScale = 0;
+            gameObject.layer = 10;
         }
         else if (possessedBook && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             cBook.GetComponent<Rigidbody2D>().gravityScale = 1;
-
             possessedBook = false;
+            gameObject.layer = 3;
         }
     }
 
@@ -228,5 +228,7 @@ public class GhostMovement : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         possessedBook = false;
+        gameObject.layer = 3;
+        cBook = null;
     }
 }

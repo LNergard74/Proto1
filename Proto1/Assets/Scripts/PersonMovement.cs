@@ -18,10 +18,14 @@ public class PersonMovement : MonoBehaviour
     public GameObject Player;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float waitTime;
     [SerializeField] private float stunnedTime;
+
+    [SerializeField] private Sprite UnPossessedSprite;
+    [SerializeField] private Sprite PossessedSprite;
 
     private GameObject target;
 
@@ -32,6 +36,7 @@ public class PersonMovement : MonoBehaviour
     private void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         target = Point1;
     }
 
@@ -76,11 +81,13 @@ public class PersonMovement : MonoBehaviour
         //rb.velocity = Vector3.zero;
         walking = false;
         Possesed = true;
+        sr.sprite = PossessedSprite;
     }
 
     public void unpossesed()
     {
         Possesed = false;
         Invoke("resetCooldown", stunnedTime);
+        sr.sprite = UnPossessedSprite;
     }
 }
