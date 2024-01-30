@@ -137,36 +137,40 @@ public class GhostMovement : MonoBehaviour
     /// <returns></returns>
     private GameObject ClosestEnemy()
     {
-        GameObject[] enemy;
-        enemy = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        
-        //Checking through each enemy to see which one is closest
-        foreach (GameObject go in enemy)
+        if (!isPossessed)
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            GameObject[] enemy;
+            enemy = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject closest = null;
+            float distance = Mathf.Infinity;
+            Vector3 position = transform.position;
+
+            //Checking through each enemy to see which one is closest
+            foreach (GameObject go in enemy)
             {
-                closest = go;
-                distance = curDistance;
-                
-                //Allows the player to possess enemies once close enough to enemy
-                if(curDistance < possessionRange)
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
                 {
-                    canPossess = true;
-                    targetLocation = go.transform.position;
-                }
-                else
-                {
-                    canPossess = false;
+                    closest = go;
+                    distance = curDistance;
+
+                    //Allows the player to possess enemies once close enough to enemy
+                    if (curDistance < possessionRange)
+                    {
+                        canPossess = true;
+                        targetLocation = go.transform.position;
+                    }
+                    else
+                    {
+                        canPossess = false;
+                    }
                 }
             }
+
+            return closest;
         }
-        
-        return closest;
+        return null;
     }
 
     /// <summary>
