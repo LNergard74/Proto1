@@ -25,6 +25,8 @@ public class GhostMovement : MonoBehaviour
     public bool canPossess;
     public bool canPossessBook;
     public bool possessedBook = false;
+    public GameObject possessExorsistButton;
+    public GameObject possessBookButton;
 
     private Vector3 targetLocation;
 
@@ -158,9 +160,11 @@ public class GhostMovement : MonoBehaviour
                 {
                     canPossess = true;
                     targetLocation = go.transform.position;
+                    possessExorsistButton.SetActive(true);
                 }
                 else
                 {
+                    possessExorsistButton.SetActive(false);
                     canPossess = false;
                 }
             }
@@ -197,9 +201,11 @@ public class GhostMovement : MonoBehaviour
                 {
                     canPossessBook = true;
                     targetLocation = go.transform.position;
+                    possessBookButton.SetActive(true);
                 }
                 else
                 {
+                    possessBookButton.SetActive(false);
                     canPossessBook = false;
                 }
             }
