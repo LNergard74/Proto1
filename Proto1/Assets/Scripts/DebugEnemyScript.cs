@@ -53,7 +53,7 @@ public class DebugEnemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb2d.AddForce(moveSpeed * movement);
+        //rb2d.AddForce(moveSpeed * movement);
     }
 
     private void Update()
