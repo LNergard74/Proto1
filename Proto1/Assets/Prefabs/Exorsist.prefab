@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 7697524755174193238}
   - component: {fileID: 7697524755174193234}
   - component: {fileID: 6967931698553919584}
+  - component: {fileID: 6157307718382446717}
   m_Layer: 6
   m_Name: Exorsist
   m_TagString: Enemy
@@ -311,7 +312,7 @@ MonoBehaviour:
   Point1: {fileID: 0}
   Point2: {fileID: 0}
   Player: {fileID: 0}
-  Stars: {fileID: 0}
+  StunAnimation: {fileID: 6967931698553919584}
   moveSpeed: 5
   waitTime: 1
   stunnedTime: 3
@@ -326,9 +327,30 @@ Animation:
   m_GameObject: {fileID: 7697524755174193237}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 242ca7483baa4a3409ac5925c04dd51f, type: 2}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: dfef115c5bed0f44eb4e24833c23d97c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: dfef115c5bed0f44eb4e24833c23d97c, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!95 &6157307718382446717
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697524755174193237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9cf238cb4d314441bf51cfb5c205795, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
