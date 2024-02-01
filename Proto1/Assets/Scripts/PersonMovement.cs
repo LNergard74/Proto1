@@ -16,6 +16,7 @@ public class PersonMovement : MonoBehaviour
     public GameObject Point1;
     public GameObject Point2;
     public GameObject Player;
+    public GameObject Stars;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
