@@ -13,11 +13,13 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour
 {
     [SerializeField] GameObject NPC;
+    [SerializeField] GameObject GameManager;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Book")
         {
+            GameManager.GetComponent<GameManager>().remove(NPC);
             Destroy(collision.gameObject);
             Destroy(NPC);
         }

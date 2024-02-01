@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/PrototypeScene.unity
     guid: a34c794028ac9114f8d09ed2710b8350
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/WinScreen.unity
+    guid: 5397120e078fffc469c4c10f1b482295
   - enabled: 1
     path: Assets/Scenes/LoseScreen.unity
     guid: 070d5e1b2d6455c4e9db8fce4200b451
