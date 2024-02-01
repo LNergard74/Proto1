@@ -16,7 +16,6 @@ public class PersonMovement : MonoBehaviour
     public GameObject Point1;
     public GameObject Point2;
     public GameObject Player;
-    public GameObject Stars;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -33,12 +32,14 @@ public class PersonMovement : MonoBehaviour
     bool walking = true;
     bool Possesed = false;
 
+    Animator Animator;
 
     private void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         target = Point1;
+        Animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -73,6 +74,7 @@ public class PersonMovement : MonoBehaviour
     {
         if (!Possesed)
         {
+            Animator.SetTrigger("Unstun");
             walking = true;
         }
     }
@@ -87,6 +89,7 @@ public class PersonMovement : MonoBehaviour
 
     public void unpossesed()
     {
+        Animator.SetTrigger("Stun");
         Possesed = false;
         Invoke("resetCooldown", stunnedTime);
         sr.sprite = UnPossessedSprite;
