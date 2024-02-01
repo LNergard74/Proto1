@@ -25,6 +25,8 @@ public class GhostMovement : MonoBehaviour
     public bool canPossess;
     public bool canPossessBook;
     public bool possessedBook = false;
+    public GameObject possessExorsistButton;
+    public GameObject possessBookButton;
 
     private Vector3 targetLocation;
 
@@ -71,7 +73,6 @@ public class GhostMovement : MonoBehaviour
             possessedBook = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             cBook.GetComponent<Rigidbody2D>().gravityScale = 0;
-            cBook.tag = "Book";
             gameObject.layer = 10;
         }
         else if (possessedBook && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
@@ -79,7 +80,6 @@ public class GhostMovement : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             cBook.GetComponent<Rigidbody2D>().gravityScale = 1;
             possessedBook = false;
-            cBook.tag = "DroppedBook";
             gameObject.layer = 3;
         }
     }
@@ -139,40 +139,38 @@ public class GhostMovement : MonoBehaviour
     /// <returns></returns>
     private GameObject ClosestEnemy()
     {
-        if (!isPossessed)
+        GameObject[] enemy;
+        enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        
+        //Checking through each enemy to see which one is closest
+        foreach (GameObject go in enemy)
         {
-            GameObject[] enemy;
-            enemy = GameObject.FindGameObjectsWithTag("Enemy");
-            GameObject closest = null;
-            float distance = Mathf.Infinity;
-            Vector3 position = transform.position;
-
-            //Checking through each enemy to see which one is closest
-            foreach (GameObject go in enemy)
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
             {
-                Vector3 diff = go.transform.position - position;
-                float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
+                closest = go;
+                distance = curDistance;
+                
+                //Allows the player to possess enemies once close enough to enemy
+                if(curDistance < possessionRange)
                 {
-                    closest = go;
-                    distance = curDistance;
-
-                    //Allows the player to possess enemies once close enough to enemy
-                    if (curDistance < possessionRange)
-                    {
-                        canPossess = true;
-                        targetLocation = go.transform.position;
-                    }
-                    else
-                    {
-                        canPossess = false;
-                    }
+                    canPossess = true;
+                    targetLocation = go.transform.position;
+                    possessExorsistButton.SetActive(true);
+                }
+                else
+                {
+                    possessExorsistButton.SetActive(false);
+                    canPossess = false;
                 }
             }
-
-            return closest;
         }
-        return cEnemy;
+        
+        return closest;
     }
 
     /// <summary>
@@ -182,40 +180,38 @@ public class GhostMovement : MonoBehaviour
     /// <returns></returns>
     private GameObject ClosestBook()
     {
-        if(!possessedBook)
+        GameObject[] item;
+        item = GameObject.FindGameObjectsWithTag("Book");
+        closestItem = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+
+        //Checking through each enemy to see which one is closest
+        foreach (GameObject go in item)
         {
-            GameObject[] item;
-            item = GameObject.FindGameObjectsWithTag("DroppedBook");
-            closestItem = null;
-            float distance = Mathf.Infinity;
-            Vector3 position = transform.position;
-
-            //Checking through each enemy to see which one is closest
-            foreach (GameObject go in item)
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
             {
-                Vector3 diff = go.transform.position - position;
-                float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
-                {
-                    closestItem = go;
-                    distance = curDistance;
+                closestItem = go;
+                distance = curDistance;
 
-                    //Allows the player to possess enemies once close enough to enemy
-                    if (curDistance < possessionRange)
-                    {
-                        canPossessBook = true;
-                        targetLocation = go.transform.position;
-                    }
-                    else
-                    {
-                        canPossessBook = false;
-                    }
+                //Allows the player to possess enemies once close enough to enemy
+                if (curDistance < possessionRange)
+                {
+                    canPossessBook = true;
+                    targetLocation = go.transform.position;
+                    possessBookButton.SetActive(true);
+                }
+                else
+                {
+                    possessBookButton.SetActive(false);
+                    canPossessBook = false;
                 }
             }
-
-            return closestItem;
         }
-        return cBook;
+
+        return closestItem;
     }
 
 
