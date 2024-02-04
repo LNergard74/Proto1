@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b1d1c6cd9249c8441a3c90cabc11fae1
+guid: 1f9e8083cae18c743839d382307d75ab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stunned_0
+      name: StunnedPriest_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac34f9b2b7d37b44da563e0727a50d46
-      internalID: 926187610
+      spriteID: f1deb4a724f76d24997a950b43fa4dc6
+      internalID: -416617216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stunned_1
+      name: StunnedPriest_1
       rect:
         serializedVersion: 2
         x: 0
@@ -142,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 532e9d6268d75f847883b5522d7ff737
-      internalID: 1193632270
+      spriteID: aa3329fb94eecee4d9078ca0be524178
+      internalID: 156915361
       vertices: []
       indices: 
       edges: []
@@ -159,8 +159,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      stunned_0: 926187610
-      stunned_1: 1193632270
+      StunnedPriest_1: 156915361
+      StunnedPriest_0: -416617216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
