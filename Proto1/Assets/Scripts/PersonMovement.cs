@@ -106,7 +106,7 @@ public class PersonMovement : MonoBehaviour
         //rb.velocity = Vector3.zero;
         walking = false;
         Possesed = true;
-        sr.sprite = PossessedSprite;
+        Animator.SetTrigger("Possessed");
     }
 
     public void unpossesed()

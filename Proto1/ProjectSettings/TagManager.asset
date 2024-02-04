@@ -9,6 +9,7 @@ TagManager:
   - DroppedBook
   - Chandelier
   - Chute
+  - Window
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - GhostBooked
   - Chandelier
   - Hurtbox
-  - 
+  - Window
   - 
   - 
   - 

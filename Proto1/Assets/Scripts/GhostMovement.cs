@@ -36,6 +36,11 @@ public class GhostMovement : MonoBehaviour
     private GameObject cBook;
     private GameObject cChute;
 
+    //Window Variables
+    private bool windowBroken;
+    private bool possedPriest;
+    private GameObject window;
+
     /// <summary>
     /// Finds the rigidbody, assigns the action map to movementActions, and sets the isPossessed bool
     /// </summary>
@@ -44,6 +49,7 @@ public class GhostMovement : MonoBehaviour
         movementActions = new Movement();
         rb2d = GetComponent<Rigidbody2D>();
         isPossessed = false;
+        window = GameObject.FindGameObjectWithTag("Window");
     }
 
     /// <summary>
@@ -62,6 +68,15 @@ public class GhostMovement : MonoBehaviour
             rb2d.velocity = Vector3.zero;
             cEnemy.GetComponent<PersonMovement>().possesed();
             gameObject.layer = 9;
+        }
+        //Detects whether the window is broken, if the ghost is currently possessing a priest, and if the player is close enough to the window
+        //If all are true, it kills the priest
+        else if (windowBroken && isPossessed && Vector3.Distance(window.transform.position, transform.position) < 3f)
+        {
+            isPossessed = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            Destroy(cEnemy);
+            gameObject.layer = 3;
         }
         else if(isPossessed && Vector3.Distance(cEnemy.transform.position, transform.position) < Vector3.Distance(cBook.transform.position, transform.position))
         {
@@ -281,5 +296,16 @@ public class GhostMovement : MonoBehaviour
         possessedBook = false;
         gameObject.layer = 3;
         cBook = null;
+    }
+
+    //Detects if the book runs into a window, and if it does it breaks the window
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Window") && !windowBroken)
+        {
+            //Change window sprite
+            windowBroken = true;
+            Destroy(cBook);
+        }
     }
 }
