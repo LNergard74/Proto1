@@ -15,12 +15,11 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] GameObject NPC;
     [SerializeField] GameObject GameManager;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Book")
+        if (collision.gameObject.tag == "Chandelier")
         {
             GameManager.GetComponent<GameManager>().remove(NPC);
-            Destroy(collision.gameObject);
             Destroy(NPC);
         }
     }
