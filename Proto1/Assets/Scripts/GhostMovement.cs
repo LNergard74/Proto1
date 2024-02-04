@@ -34,6 +34,14 @@ public class GhostMovement : MonoBehaviour
     private GameObject closestItem;
     private GameObject cBook;
 
+
+
+    //Window Variables
+    private bool windowBroken;
+    private bool possedPriest;
+    private GameObject window;
+   
+
     /// <summary>
     /// Finds the rigidbody, assigns the action map to movementActions, and sets the isPossessed bool
     /// </summary>
@@ -42,6 +50,9 @@ public class GhostMovement : MonoBehaviour
         movementActions = new Movement();
         rb2d = GetComponent<Rigidbody2D>();
         isPossessed = false;
+        windowBroken = false;
+
+        window = GameObject.FindGameObjectWithTag("Window");
     }
 
     /// <summary>
@@ -60,6 +71,9 @@ public class GhostMovement : MonoBehaviour
             rb2d.velocity = Vector3.zero;
             cEnemy.GetComponent<PersonMovement>().possesed();
             gameObject.layer = 9;
+
+            //Added for window code
+            possedPriest = true;
         }
         else if(isPossessed && Vector3.Distance(cEnemy.transform.position, transform.position) < Vector3.Distance(cBook.transform.position, transform.position))
         {
@@ -67,6 +81,9 @@ public class GhostMovement : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             cEnemy.GetComponent<PersonMovement>().unpossesed();
             gameObject.layer = 3;
+
+            //Added for window code
+            possedPriest = false;
         }
         else if(!possessedBook && !isPossessed && canPossessBook && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
         {
@@ -81,6 +98,12 @@ public class GhostMovement : MonoBehaviour
             cBook.GetComponent<Rigidbody2D>().gravityScale = 1;
             possessedBook = false;
             gameObject.layer = 3;
+        }
+
+        //Window stuff
+        else if (windowBroken && possedPriest && Vector3.Distance(window.transform.position, transform.position) < 1f)
+        {
+            Destroy(cEnemy);
         }
     }
 
@@ -237,4 +260,16 @@ public class GhostMovement : MonoBehaviour
         gameObject.layer = 3;
         cBook = null;
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (CompareTag("Window") && !windowBroken)
+        {
+            //Change window sprite
+            windowBroken = true;
+        }
+    }
+
+
 }
