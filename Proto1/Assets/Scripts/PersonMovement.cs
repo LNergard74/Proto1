@@ -86,11 +86,6 @@ public class PersonMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collision2D collision)
-    {
-
-    }
-
     void resetSpeed()
     {
         moveSpeed = baseMoveSpeed;
