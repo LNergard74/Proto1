@@ -21,7 +21,9 @@ public class PersonMovement : MonoBehaviour
     private SpriteRenderer sr;
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float baseMoveSpeed;
     [SerializeField] private float waitTime;
+    [SerializeField] private float slowTime;
     [SerializeField] private float stunnedTime;
 
     [SerializeField] private Sprite UnPossessedSprite;
@@ -31,6 +33,7 @@ public class PersonMovement : MonoBehaviour
 
     bool walking = true;
     bool Possesed = false;
+    bool slowed = false;
 
 
     private void Start()
@@ -66,6 +69,30 @@ public class PersonMovement : MonoBehaviour
                 Invoke("resetCooldown", waitTime);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Chandelier")
+        {
+            if (!slowed)
+            {
+                moveSpeed = moveSpeed / 2;
+                Invoke("resetSpeed", slowTime);
+                slowed = true;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collision2D collision)
+    {
+
+    }
+
+    void resetSpeed()
+    {
+        moveSpeed = baseMoveSpeed;
+        slowed = false;
     }
 
     private void resetCooldown()

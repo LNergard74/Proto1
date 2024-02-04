@@ -8,8 +8,10 @@ possession behavior.
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class GhostMovement : MonoBehaviour
 {
@@ -25,12 +27,14 @@ public class GhostMovement : MonoBehaviour
     public bool canPossess;
     public bool canPossessBook;
     public bool possessedBook = false;
+    public bool canChute;
 
     private Vector3 targetLocation;
 
     private GameObject cEnemy;
     private GameObject closestItem;
     private GameObject cBook;
+    private GameObject cChute;
 
     /// <summary>
     /// Finds the rigidbody, assigns the action map to movementActions, and sets the isPossessed bool
@@ -73,6 +77,12 @@ public class GhostMovement : MonoBehaviour
             cBook.GetComponent<Rigidbody2D>().gravityScale = 0;
             cBook.tag = "Book";
             gameObject.layer = 10;
+        }
+        else if(possessedBook && canChute)
+        {
+            cChute.GetComponent<LaundryChute>().sendBook(); 
+            Destroy(cBook); 
+            cBook = null;
         }
         else if (possessedBook && Vector3.Distance(cEnemy.transform.position, transform.position) > Vector3.Distance(cBook.transform.position, transform.position))
         {
@@ -123,6 +133,7 @@ public class GhostMovement : MonoBehaviour
     {
         cEnemy = ClosestEnemy();
         cBook = ClosestBook();
+        cChute= ClosestChute();
 
         //Updating the targetLocation for the player to follow when possessing enemies
         if (isPossessed && justPossessed)
@@ -218,6 +229,36 @@ public class GhostMovement : MonoBehaviour
         return cBook;
     }
 
+    public GameObject ClosestChute()
+    {
+        GameObject[] item;
+        item = GameObject.FindGameObjectsWithTag("Chute");
+        GameObject closestChute = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in item)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closestChute = go;
+                distance = curDistance;
+
+                //Allows the player to possess enemies once close enough to enemy
+                if (curDistance < possessionRange)
+                {
+                    canChute = true;
+                    targetLocation = go.transform.position;
+                }
+                else
+                {
+                    canChute = false;
+                }
+            }
+        }
+        return closestChute;
+    }
 
     /// <summary>
     /// Enables and disables controls
