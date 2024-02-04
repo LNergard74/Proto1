@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c738797ed97a76d45b1a8e7d5a3d4363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  howToPlay: {fileID: 0}
+  howToPlay: {fileID: 1816188715}
 --- !u!4 &125919304
 Transform:
   m_ObjectHideFlags: 0

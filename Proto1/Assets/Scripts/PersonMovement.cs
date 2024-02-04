@@ -35,12 +35,14 @@ public class PersonMovement : MonoBehaviour
     bool Possesed = false;
     bool slowed = false;
 
+    Animator Animator;
 
     private void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         target = Point1;
+        Animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -99,6 +101,7 @@ public class PersonMovement : MonoBehaviour
     {
         if (!Possesed)
         {
+            Animator.SetTrigger("Unstun");
             walking = true;
         }
     }
@@ -113,6 +116,7 @@ public class PersonMovement : MonoBehaviour
 
     public void unpossesed()
     {
+        Animator.SetTrigger("Stun");
         Possesed = false;
         Invoke("resetCooldown", stunnedTime);
         sr.sprite = UnPossessedSprite;
