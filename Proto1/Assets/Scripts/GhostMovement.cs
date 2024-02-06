@@ -35,6 +35,7 @@ public class GhostMovement : MonoBehaviour
     private GameObject closestItem;
     private GameObject cBook;
     private GameObject cChute;
+    public GameObject GameController;
 
     //Window Variables
     private bool windowBroken;
@@ -282,12 +283,14 @@ public class GhostMovement : MonoBehaviour
     {
         movementActions.Enable();
         movementActions.Controls.Interact.performed += Interact;
+        movementActions.Controls.Pause.performed += Pause;
     }
 
     private void OnDisable()
     {
         movementActions.Disable();
         movementActions.Controls.Interact.performed -= Interact;
+        movementActions.Controls.Pause.performed -= Pause;
     }
 
     public void Bonk()
@@ -308,4 +311,11 @@ public class GhostMovement : MonoBehaviour
             Destroy(cBook);
         }
     }
+
+    private void Pause(InputAction.CallbackContext context)
+    {
+        Debug.Log("Goober");
+        GameController.GetComponent<GameController>().Pause();
+    }
+
 }
