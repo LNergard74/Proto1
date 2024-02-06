@@ -7,9 +7,11 @@ public class GameController : MonoBehaviour
 {
     public GameObject howToPlay;
     public GameObject pauseMenu;
+    public GameObject credits;
 
     private bool howToPlayToggle = false;
     public bool isPaused = false;
+    private bool creditsToggle = false;
 
     public void Quit()
     {
@@ -30,6 +32,11 @@ public class GameController : MonoBehaviour
     {
         howToPlayToggle = !howToPlayToggle;
         howToPlay.SetActive(howToPlayToggle);
+    }
+    public void CreditsToggle()
+    {
+        creditsToggle = !creditsToggle;
+        credits.SetActive(creditsToggle);
     }
     public void Resume()
     {
