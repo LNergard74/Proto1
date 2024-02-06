@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject howToPlay;
+    public GameObject pauseMenu;
+
     private bool howToPlayToggle = false;
+    public bool isPaused = false;
+
     public void Quit()
     {
         Application.Quit();
@@ -26,5 +30,26 @@ public class GameController : MonoBehaviour
     {
         howToPlayToggle = !howToPlayToggle;
         howToPlay.SetActive(howToPlayToggle);
+    }
+    public void Resume()
+    {
+        isPaused = !isPaused;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    public void Pause()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+        }
     }
 }
