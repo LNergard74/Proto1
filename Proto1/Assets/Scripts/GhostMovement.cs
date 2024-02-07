@@ -33,8 +33,10 @@ public class GhostMovement : MonoBehaviour
 
     private GameObject cEnemy;
     private GameObject closestItem;
-    private GameObject cBook;
+    public GameObject cBook;
     private GameObject cChute;
+    public GameObject cWindow;
+    public GameManager gameManager;
 
     //Window Variables
     private bool windowBroken;
@@ -71,10 +73,12 @@ public class GhostMovement : MonoBehaviour
         }
         //Detects whether the window is broken, if the ghost is currently possessing a priest, and if the player is close enough to the window
         //If all are true, it kills the priest
-        else if (windowBroken && isPossessed && Vector3.Distance(window.transform.position, transform.position) < 3f)
+        else if (cWindow.GetComponent<WindowBehavior>().windowBroken && isPossessed && Vector3.Distance(cWindow.transform.position, transform.position) < 3f)
         {
+            Debug.Log("Goober");
             isPossessed = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            gameManager.remove(cEnemy);
             Destroy(cEnemy);
             gameObject.layer = 3;
         }
@@ -149,6 +153,7 @@ public class GhostMovement : MonoBehaviour
         cEnemy = ClosestEnemy();
         cBook = ClosestBook();
         cChute= ClosestChute();
+        cWindow = ClosestWindow();
 
         //Updating the targetLocation for the player to follow when possessing enemies
         if (isPossessed && justPossessed)
@@ -275,6 +280,33 @@ public class GhostMovement : MonoBehaviour
         return closestChute;
     }
 
+    private GameObject ClosestWindow()
+    {
+        if (!isPossessed)
+        {
+            GameObject[] window;
+            window = GameObject.FindGameObjectsWithTag("Window");
+            GameObject closest = null;
+            float distance = Mathf.Infinity;
+            Vector3 position = transform.position;
+
+            //Checking through each enemy to see which one is closest
+            foreach (GameObject go in window)
+            {
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    closest = go;
+                    distance = curDistance;
+                }
+            }
+
+            return closest;
+        }
+        return cWindow;
+    }
+
     /// <summary>
     /// Enables and disables controls
     /// </summary>
@@ -298,14 +330,16 @@ public class GhostMovement : MonoBehaviour
         cBook = null;
     }
 
+    /*
     //Detects if the book runs into a window, and if it does it breaks the window
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Window") && !windowBroken)
+        if (collision.gameObject.CompareTag("Window") && !windowBroken && collision.gameObject == cWindow)
         {
             //Change window sprite
             windowBroken = true;
             Destroy(cBook);
         }
     }
+    */
 }
