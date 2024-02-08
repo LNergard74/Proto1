@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> gameObjects = new List<GameObject>();
+    public bool isLevel1;
 
     void Update()
     {
-        if (gameObjects.Count == 0)
+        if (gameObjects.Count == 0 && isLevel1)
         {
             SceneManager.LoadScene(2);
+        }
+        else if(gameObjects.Count == 0 && !isLevel1)
+        {
+            SceneManager.LoadScene(3);
         }
     }
 
