@@ -28,14 +28,14 @@ public class Timer : MonoBehaviour
         // when the timer hits 0 it will print "Time has run out" in the debuglog
         if (timerIsRunning)
         {
-            if (timeRemaining > 0)
+            if (timeRemaining > 1)
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
             else
             {
-                timeRemaining = 0;
+                timeRemaining = 1;
                 timerIsRunning = false;
                 SceneManager.LoadScene("LoseScreen");
             }
