@@ -37,6 +37,7 @@ public class GhostMovement : MonoBehaviour
     private GameObject cChute;
     public GameObject cWindow;
     public GameManager gameManager;
+    public GameObject gameController;
 
     //Window Variables
     private bool windowBroken;
@@ -342,4 +343,9 @@ public class GhostMovement : MonoBehaviour
         }
     }
     */
+
+    private void Pause(InputAction.CallbackContext context)
+    {
+        gameController.GetComponent<GameController>().Pause();
+    }
 }
