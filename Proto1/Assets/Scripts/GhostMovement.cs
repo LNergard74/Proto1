@@ -38,6 +38,8 @@ public class GhostMovement : MonoBehaviour
     public GameObject cWindow;
     public GameManager gameManager;
     public GameObject gameController;
+    public GameObject possessExorsistButton;
+    public GameObject possessBookButton;
 
     //Window Variables
     private bool windowBroken;
@@ -193,11 +195,14 @@ public class GhostMovement : MonoBehaviour
                     if (curDistance < possessionRange)
                     {
                         canPossess = true;
-                        targetLocation = go.transform.position;
+                        targetLocation = go.transform.position; 
+                        possessExorsistButton.SetActive(true);
+
                     }
                     else
                     {
                         canPossess = false;
+                        possessExorsistButton.SetActive(false);
                     }
                 }
             }
@@ -237,10 +242,12 @@ public class GhostMovement : MonoBehaviour
                     {
                         canPossessBook = true;
                         targetLocation = go.transform.position;
+                        possessBookButton.SetActive(true);
                     }
                     else
                     {
                         canPossessBook = false;
+                        possessBookButton.SetActive(false);
                     }
                 }
             }
