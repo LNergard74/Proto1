@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WindowBehavior : MonoBehaviour
@@ -20,13 +21,9 @@ public class WindowBehavior : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void breakwindow()
     {
-        if (collision.gameObject.CompareTag("Book") && !windowBroken)
-        {
-            gameObject.GetComponent<SpriteRenderer>().sprite = brokenwindow;
-            windowBroken = true;
-            Destroy(gmScript.cBook);
-        }
+        gameObject.GetComponent<SpriteRenderer>().sprite = brokenwindow;
+        windowBroken = true;
     }
 }

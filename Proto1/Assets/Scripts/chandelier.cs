@@ -13,11 +13,13 @@ public class chandelier : MonoBehaviour
         myRB = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void Reset()
     {
-        if(canFall)
-        {
-            myRB.gravityScale = 1;
-        }
+        
+    }
+
+    public void drop()
+    {
+        myRB.gravityScale = 1;
     }
 }
