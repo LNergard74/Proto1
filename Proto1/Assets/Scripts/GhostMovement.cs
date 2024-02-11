@@ -142,6 +142,7 @@ public class GhostMovement : MonoBehaviour
     {
         cEnemy = ClosestEnemy();
         cWindow = ClosestWindow();
+        canPossessChandelier = CloseChandelier();
 
         //Updating the targetLocation for the player to follow when possessing enemies
         if (isPossessed && justPossessed)
