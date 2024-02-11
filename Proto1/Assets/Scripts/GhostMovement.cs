@@ -150,6 +150,17 @@ public class GhostMovement : MonoBehaviour
             transform.position = targetLocation;
             justPossessed = false;
         }
+
+        if (canPossessChandelier == true)
+        {
+            possessBookButton.SetActive(true);
+
+        }
+        else
+        {
+            canPossess = false;
+            possessBookButton.SetActive(false);
+        }
     }
 
     /// <summary>
