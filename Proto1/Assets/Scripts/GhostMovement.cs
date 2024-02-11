@@ -89,6 +89,12 @@ public class GhostMovement : MonoBehaviour
             Destroy(cEnemy);
             gameObject.layer = 3;
         }
+        else if (possessedChandelier)
+        {
+            possessedChandelier = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            Chandelier.GetComponent<chandelier>().drop();
+        }
         else if(isPossessed)
         {
             isPossessed = false;
@@ -121,7 +127,7 @@ public class GhostMovement : MonoBehaviour
         }
         else if(!isPossessed && possessedChandelier)
         {
-
+            transform.position = Chandelier.transform.position;
         }
         else
         {
