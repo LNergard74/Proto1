@@ -75,7 +75,7 @@ public class PersonMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Chandelier")
+        if (collision.gameObject.tag == "Rope")
         {
             if (!slowed)
             {
