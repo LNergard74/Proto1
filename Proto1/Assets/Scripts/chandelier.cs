@@ -13,6 +13,8 @@ public class chandelier : MonoBehaviour
     public float resetSpeed;
     public float resetTime;
 
+    public GameObject hitbox;
+
     private void Start()
     {
         myRB = gameObject.GetComponent<Rigidbody2D>();
@@ -22,6 +24,7 @@ public class chandelier : MonoBehaviour
     {
         if (resetting)
         {
+            hitbox.GetComponent<PolygonCollider2D>().enabled = false;
             transform.position = Vector3.MoveTowards(transform.position, defaultPossition.transform.position, resetSpeed * Time.deltaTime);
             if(transform.position == defaultPossition.transform.position)
             {
@@ -36,6 +39,7 @@ public class chandelier : MonoBehaviour
         resetting= false;
         myRB.gravityScale = 1;
         Invoke("goback", resetTime);
+        hitbox.GetComponent<PolygonCollider2D>().enabled = true;
     }
 
     public void goback()

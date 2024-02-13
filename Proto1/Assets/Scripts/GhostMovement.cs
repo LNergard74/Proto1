@@ -158,7 +158,6 @@ public class GhostMovement : MonoBehaviour
         }
         else
         {
-            canPossess = false;
             possessBookButton.SetActive(false);
         }
     }
