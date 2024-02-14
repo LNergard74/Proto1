@@ -35,7 +35,7 @@ Transform:
   - {fileID: 9132737082118500690}
   - {fileID: 9132737082839586897}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &9132737081513125513
 SpriteRenderer:
@@ -178,6 +178,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canFall: 0
   myRB: {fileID: 0}
+  resetting: 0
+  defaultPossition: {fileID: 0}
+  resetSpeed: 0
+  resetTime: 0
+  hitbox: {fileID: 0}
 --- !u!1 &9132737082118500691
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +194,6 @@ GameObject:
   - component: {fileID: 9132737082118500690}
   - component: {fileID: 9132737082118500700}
   - component: {fileID: 9132737082118500701}
-  - component: {fileID: 9132737082118500703}
   m_Layer: 0
   m_Name: The Rope
   m_TagString: Chandelier
@@ -309,19 +313,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7576485, y: 3.121417}
   m_EdgeRadius: 0
---- !u!114 &9132737082118500703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9132737082118500691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91cda4bc35e51744b8b17f4aba0dcc46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Chandelier: {fileID: 9132737081513125516}
 --- !u!1 &9132737082839586902
 GameObject:
   m_ObjectHideFlags: 0

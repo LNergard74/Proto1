@@ -39,7 +39,6 @@ public class PersonMovement : MonoBehaviour
 
     private void Start()
     {
-        //rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         target = Point1;
         Animator = gameObject.GetComponent<Animator>();
@@ -60,14 +59,12 @@ public class PersonMovement : MonoBehaviour
             {
                 target = Point1;
                 walking = false;
-                //rb.velocity = Vector3.zero;
                 Invoke("resetCooldown", waitTime);
             }
             else if(transform.position.x == Point1.transform.position.x)
             {
                 target = Point2;
                 walking = false;
-                //rb.velocity = Vector3.zero;
                 Invoke("resetCooldown", waitTime);
             }
         }

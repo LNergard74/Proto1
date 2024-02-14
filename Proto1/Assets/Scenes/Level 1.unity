@@ -2894,7 +2894,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Rope
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9132737082118500703, guid: 245a46788155b114f888d9d56f773955, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

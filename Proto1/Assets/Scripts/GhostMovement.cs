@@ -208,8 +208,10 @@ public class GhostMovement : MonoBehaviour
         return cEnemy;
     }
 
-   
-
+    /// <summary>
+    /// looks to see if the closest window to the player is close enough to throw the priest out
+    /// </summary>
+    /// <returns></returns>
     private GameObject ClosestWindow()
     {
         if (!isPossessed)
@@ -237,6 +239,10 @@ public class GhostMovement : MonoBehaviour
         return cWindow;
     }
     
+    /// <summary>
+    /// checks if the chandelier in the scene is close enough to be possessed
+    /// </summary>
+    /// <returns></returns>
     private bool CloseChandelier()
     {
         if (!isPossessed)
@@ -267,6 +273,10 @@ public class GhostMovement : MonoBehaviour
         movementActions.Controls.Pause.performed -= Pause;
     }
 
+    /// <summary>
+    /// pauses time if gets the input
+    /// </summary>
+    /// <param name="context"></param>
     private void Pause(InputAction.CallbackContext context)
     {
         gameController.GetComponent<GameController>().Pause();

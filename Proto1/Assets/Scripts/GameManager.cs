@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> gameObjects = new List<GameObject>();
     public bool isLevel1;
 
+    //checks is all the preists have died in the scene and starts the next level or go to the victory screen
     void Update()
     {
         if (gameObjects.Count == 0 && isLevel1)
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //allows accsess to other scripts to remove objects from the list
     public void remove(GameObject Priest)
     {
         gameObjects.Remove(Priest);

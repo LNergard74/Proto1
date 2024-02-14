@@ -15,6 +15,10 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] GameObject NPC;
     [SerializeField] GameObject GameManager;
 
+    /// <summary>
+    /// when the trigger gets hit it kills the preist
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Chandelier")

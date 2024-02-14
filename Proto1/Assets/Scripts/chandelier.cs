@@ -20,6 +20,7 @@ public class chandelier : MonoBehaviour
         myRB = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    //To check if the chandelier should go back to the spot where it fell
     private void Update()
     {
         if (resetting)
@@ -34,6 +35,7 @@ public class chandelier : MonoBehaviour
         }
     }
 
+    //called to make the chandelier fall to start damaging the preists
     public void drop()
     {
         resetting= false;
@@ -42,6 +44,7 @@ public class chandelier : MonoBehaviour
         hitbox.GetComponent<PolygonCollider2D>().enabled = true;
     }
 
+    //starts to reset the chandeler back to its original possition
     public void goback()
     {
         myRB.gravityScale = 0;
