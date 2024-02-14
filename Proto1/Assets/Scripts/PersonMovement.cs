@@ -17,7 +17,6 @@ public class PersonMovement : MonoBehaviour
     public GameObject Point2;
     public GameObject Player;
 
-    private Rigidbody2D rb;
     private SpriteRenderer sr;
 
     [SerializeField] private float moveSpeed;
